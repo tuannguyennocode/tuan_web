@@ -36,6 +36,12 @@ public class CategoryService implements ICategoryService {
         }
         return listCateDTO;
     }
+    public CategoryDTO findOneCategory(Long id){
+        CategoryEntity categoryEntity = new CategoryEntity();
+        categoryEntity = categoryRepository.findOneById(id);
+        CategoryDTO categoryDTO = categoryConverter.toDTO(categoryEntity);
+        return categoryDTO;
+    }
 
     public CategoryDTO save(CategoryDTO categoryDTO) {
         CategoryEntity categoryEntity = new CategoryEntity();

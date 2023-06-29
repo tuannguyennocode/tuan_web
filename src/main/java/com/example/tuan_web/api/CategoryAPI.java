@@ -3,6 +3,9 @@ package com.example.tuan_web.api;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.graphql.data.method.annotation.Argument;
+import org.springframework.graphql.data.method.annotation.QueryMapping;
+import org.springframework.graphql.data.method.annotation.SchemaMapping;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,8 +24,18 @@ public class CategoryAPI {
     @Autowired
     private ICategoryService categoryService;
 
+    @SchemaMapping(typeName = "Query", value = "allCategory")
+    public List<CategoryDTO> getAllCategory1() {
+        return categoryService.getAllCategory();
+    }
+
+    @QueryMapping
+    public CategoryDTO findOneCategory(@Argument Long id) {
+        return categoryService.findOneCategory(id);
+    }
+
     @GetMapping(value = "/category")
-    public List<CategoryDTO> getAllCategory() {
+    public List<CategoryDTO> getAllCategory2() {
         return categoryService.getAllCategory();
     }
 
