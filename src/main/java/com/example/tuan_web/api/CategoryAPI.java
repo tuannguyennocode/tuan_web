@@ -35,7 +35,9 @@ public class CategoryAPI {
     }
 
     @GetMapping(value = "/category")
+
     public List<CategoryDTO> getAllCategory2() {
+        System.out.println("hello world");
         return categoryService.getAllCategory();
     }
 
